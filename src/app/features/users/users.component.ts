@@ -1,5 +1,5 @@
 import type { User } from './feature-state/users.models';
-import { Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,7 @@ import { selectAllUsers } from './feature-state/users.selectors';
   imports: [CommonModule, UserComponent, UserOrdersComponent],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UsersComponent implements OnInit {
   private store = inject(Store);

@@ -1,7 +1,7 @@
+import type { User } from './users.models';
 import { createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import * as usersActions from './users.actions';
-import type { User } from './users.models';
 
 export interface UsersState extends EntityState<User> {
   selectedUserId: string | null;
