@@ -1,0 +1,14 @@
+.users-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+}
+
+.users-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}

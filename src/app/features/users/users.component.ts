@@ -1,11 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { USERS_MOCK } from '../../core/mocks/users.mock'; // remove later
+import { Observable, of } from 'rxjs';
+import { User } from './feature-state/users.models';
+import { CommonModule } from '@angular/common';
+import { UserComponent } from './user/user.component';
 
 @Component({
   selector: 'app-users',
-  imports: [],
+  imports: [CommonModule, UserComponent],
   templateUrl: './users.component.html',
-  styleUrl: './users.component.scss'
+  styleUrl: './users.component.scss',
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit {
+  users$: Observable<User[]> = of(USERS_MOCK); // remove later come from store
 
+  ngOnInit(): void {
+    // dispatch action to get users
+  }
 }
