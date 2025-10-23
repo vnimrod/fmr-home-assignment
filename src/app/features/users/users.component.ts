@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { USERS_MOCK } from '../../core/mocks/users.mock'; // remove later
-import { Observable, of } from 'rxjs';
-import { User } from './feature-state/users.models';
+import type { User } from './feature-state/users.models';
+import { Component, inject, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { UserComponent } from './user/user.component';
-import { UserOrdersComponent } from "../user-orders/user-orders.component";
+import { UserOrdersComponent } from '../user-orders/user-orders.component';
+import * as userActions from './feature-state/users.actions';
+import { selectAllUsers } from './feature-state/users.selectors';
 
 @Component({
   selector: 'app-users',
@@ -13,9 +15,12 @@ import { UserOrdersComponent } from "../user-orders/user-orders.component";
   styleUrl: './users.component.scss',
 })
 export class UsersComponent implements OnInit {
-  users$: Observable<User[]> = of(USERS_MOCK); // remove later come from store
+  private store = inject(Store);
+  users$: Observable<User[]> = this.store.select(selectAllUsers);
 
   ngOnInit(): void {
+    this.store.dispatch(userActions.loadUsers());
+    this.users$.subscribe((users) => console.log(users));
     // dispatch action to get users
   }
 }
