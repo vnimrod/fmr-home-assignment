@@ -1,4 +1,4 @@
-import type { User } from '../feature-state/users.models';
+import type { User } from '../feature-state';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({

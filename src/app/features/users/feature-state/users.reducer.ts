@@ -1,4 +1,4 @@
-import type { User } from './users.models';
+import type { User } from './';
 import { createReducer, on } from '@ngrx/store';
 import { createEntityAdapter, EntityState } from '@ngrx/entity';
 import * as usersActions from './users.actions';
@@ -19,7 +19,7 @@ export const initialState: UsersState = usersAdapter.getInitialState({
   error: null,
 });
 
-export const usersReducer = createReducer(
+export const Reducer = createReducer(
   initialState,
 
   on(usersActions.loadUsers, (state) => ({ ...state, loading: true })),

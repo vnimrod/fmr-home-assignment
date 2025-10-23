@@ -4,13 +4,13 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { isDevMode } from '@angular/core';
-import { usersReducer } from './app/features/users/feature-state/users.reducer';
-import { USERS_FEATURE_KEY } from './app/features/users/feature-state/users.selectors';
-import { UsersEffects } from './app/features/users/feature-state/users.effects';
+import { UsersReducer } from './app/features/users/feature-state';
+import { UsersEffects } from './app/features/users/feature-state';
+import { UsersSelectors } from './app/features/users/feature-state';
 
 bootstrapApplication(AppComponent, {
   providers: [
-    provideStore({ [USERS_FEATURE_KEY]: usersReducer }),
+    provideStore({ [UsersSelectors.USERS_FEATURE_KEY]: UsersReducer.Reducer }),
     provideEffects([UsersEffects]),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
   ],

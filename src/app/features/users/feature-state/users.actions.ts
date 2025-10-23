@@ -1,4 +1,4 @@
-import type { User } from './users.models';
+import type { User } from './';
 import { createAction, props } from '@ngrx/store';
 
 export const loadUsers = createAction('[Users] Load Users');

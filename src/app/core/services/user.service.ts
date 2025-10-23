@@ -1,4 +1,4 @@
-import type { User } from '../../features/users/feature-state/users.models';
+import type { User } from '../../features/users/feature-state';
 import type { UserOrder } from '../../features/user-orders/feature-state/user-orders.models';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';

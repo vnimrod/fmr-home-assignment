@@ -1,5 +1,5 @@
 import type { UserOrder } from '../../features/user-orders/feature-state/user-orders.models';
-import type { User } from '../../features/users/feature-state/users.models';
+import type { User } from '../../features/users/feature-state';
 import { Injectable } from '@angular/core';
 import { delay, map, Observable, of } from 'rxjs';
 import { USERS_MOCK } from '../mocks/users.mock';
