@@ -38,4 +38,18 @@ export class UsersEffects {
       )
     )
   );
+
+  delete$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UsersActions.deleteUser),
+      switchMap(({ userId }) =>
+        this.userService.deleteUser$(userId).pipe(
+          map(() => UsersActions.deleteUserSuccess({ userId })),
+          catchError((error) =>
+            of(UsersActions.deleteUserFailure({ error: error.message }))
+          )
+        )
+      )
+    )
+  );
 }

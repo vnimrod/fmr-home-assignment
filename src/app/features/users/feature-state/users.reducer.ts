@@ -37,5 +37,16 @@ export const Reducer = createReducer(
     ...state,
     loading: false,
     error,
+  })),
+  on(usersActions.deleteUser, (state, { userId }) => 
+    usersAdapter.removeOne(userId, state)
+  ),
+  on(usersActions.deleteUserSuccess, (state, { userId }) =>
+    usersAdapter.removeOne(userId, state)
+  ),
+  on(usersActions.deleteUserFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
   }))
 );

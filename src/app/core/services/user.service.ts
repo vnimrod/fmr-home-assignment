@@ -23,4 +23,8 @@ export class UserService {
   updateUser$(user: UserModels.User): Observable<UserModels.User> {
     return this.api.updateUser(user);
   }
+
+  deleteUser$(userId: string): Observable<void> {
+    return this.api.deleteUser(userId);
+  }
 }
