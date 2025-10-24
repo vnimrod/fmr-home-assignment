@@ -9,14 +9,14 @@ export class UsersEffects {
   private userService = inject(UserService);
   private actions$ = inject(Actions);
 
-  loadUsers$ = createEffect(() =>
+  load$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(UsersActions.loadUsers),
+      ofType(UsersActions.load),
       switchMap(() =>
         this.userService.getUsers$().pipe(
-          map((users) => UsersActions.loadUsersSuccess({ users })),
+          map((users) => UsersActions.loadSuccess({ users })),
           catchError((error) =>
-            of(UsersActions.loadUsersFailure({ error: error.message }))
+            of(UsersActions.loadFailure({ error: error.message }))
           )
         )
       )

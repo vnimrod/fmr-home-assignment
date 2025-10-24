@@ -1,4 +1,4 @@
-export type { User } from './users.models';
+export * as UserModels from './users.models';
 export * as UsersReducer from './users.reducer';
 export * as UsersActions from './users.actions';
 export * as UsersSelectors from './users.selectors';

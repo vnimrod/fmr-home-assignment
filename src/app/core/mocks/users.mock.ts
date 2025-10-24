@@ -1,6 +1,6 @@
-import type { User } from '../../features/users/feature-state';
+import type * as UserModels from '../../features/users/feature-state/users.models';
 
-export const USERS_MOCK: User[] = [
+export const USERS_MOCK: UserModels.User[] = [
   {
     id: '1',
     name: 'Nimrod',

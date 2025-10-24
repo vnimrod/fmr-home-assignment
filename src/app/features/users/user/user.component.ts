@@ -1,4 +1,4 @@
-import type { User } from '../feature-state';
+import type * as UserModels from '../feature-state/users.models';
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
@@ -9,5 +9,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserComponent {
-  @Input() user!: User;
+  @Input() user!: UserModels.User;
 }

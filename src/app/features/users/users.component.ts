@@ -1,4 +1,4 @@
-import type { User } from './feature-state';
+import type * as UserModels from './feature-state/users.models';
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -17,11 +17,9 @@ import { UsersSelectors } from './feature-state';
 })
 export class UsersComponent implements OnInit {
   private store = inject(Store);
-  users$: Observable<User[]> = this.store.select(UsersSelectors.selectAllUsers);
+  users$: Observable<UserModels.User[]> = this.store.select(UsersSelectors.selectAllUsers);
 
   ngOnInit(): void {
-    this.store.dispatch(userActions.loadUsers());
-    this.users$.subscribe((users) => console.log(users));
-    // dispatch action to get users
+    this.store.dispatch(userActions.load());
   }
 }
