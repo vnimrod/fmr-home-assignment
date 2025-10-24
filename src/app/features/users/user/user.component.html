@@ -1,5 +1,49 @@
-<li class="user-item">
-  <span class="user-name">{{ user.name }}</span>
-  <span class="user-email">{{ user.email }}</span>
-  <button class="select-user-button">Select User</button>
-</li>
+<form class="user-row" [formGroup]="userForm">
+   <div class="item">
+     @if (isEdit) {
+     <input
+       formControlName="name"
+       class="form-input"
+       [class.error]="userForm.get('name')?.invalid && userForm.get('name')?.touched"
+     />
+     } @else {
+     <span class="user-name">{{ user.name }}</span>
+     }
+   </div>
+
+   <div class="item">
+     @if (isEdit) {
+     <input
+       formControlName="email"
+       type="email"
+       class="form-input"
+       [class.error]="userForm.get('email')?.invalid && userForm.get('email')?.touched"
+     />
+     } @else {
+     <span class="user-email">{{ user.email }}</span>
+     }
+   </div>
+
+  <button type="button" class="orders-button">Orders</button>
+
+  <div class="action-buttons">
+    @if (isEdit) {
+      <button
+        type="button"
+        (click)="saveUser()"
+        [disabled]="userForm.invalid"
+        class="save-button"
+      >
+        ✓
+      </button>
+      <button type="button" (click)="toggleEdit()" class="cancel-button">
+        ✗
+      </button>
+    } @else {
+      <button type="button" (click)="toggleEdit()" class="edit-button">✎</button>
+    }
+      <button type="button" (click)="deleteUser()" class="delete-button">
+        ×
+      </button>
+  </div>
+</form>

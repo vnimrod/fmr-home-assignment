@@ -1,11 +1,72 @@
-.user-item {
+.user-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
-  padding: 0.5rem 0;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 16px;
+  padding: 6px;
   border-bottom: 1px solid #eee;
+  align-items: center;
 }
 
-.user-item:last-child {
-  border-bottom: none;
+.user-name,
+.user-email {
+  line-height: 2rem;
+  padding: 0.5rem 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.orders-button {
+  max-width: 100px;
+}
+
+.form-input {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  height: 2rem;
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+}
+
+.form-input.error {
+  border-color: #e74c3c;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+  flex-wrap: nowrap;
+  max-width: 100%;
+}
+
+.save-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  cursor: pointer;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  min-width: auto;
+}
+
+button:hover {
+  background: #f5f5f5;
+}
+
+.delete-button {
+  background: #e74c3c;
+  color: white;
+  border-color: #e74c3c;
+}
+
+.delete-button:hover {
+  background: #c0392b;
 }

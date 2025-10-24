@@ -22,4 +22,8 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(userActions.load());
   }
+
+  addUser(): void {
+    // this.store.dispatch(userActions.addUser();
+  }
 }

@@ -1,10 +1,18 @@
+:host {
+  width: 50%
+}
+
 .users-header {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 1rem;
   padding: 0.5rem 0;
   border-bottom: 1px solid #ccc;
   font-weight: bold;
+}
+
+.user-item {
+  height: 45px;
 }
 
 .users-list {

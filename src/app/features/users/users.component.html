@@ -1,15 +1,19 @@
 <header>
-  <span class="users-header-title">Users</span>
+  <span class="header-title">Users</span>
+  <button (click)="addUser()" class="add-user-button">Add New User</button>
 </header>
 <main>
   <div class="users-header">
     <span class="header-name">Name</span>
     <span class="header-email">Email</span>
+    <span class="header-actions"></span>
   </div>
 
   <ul class="users-list">
     @for (user of users$ | async; track user.id) {
+    <li class="user-item">
       <app-user [user]="user"></app-user>
+    </li>
     }
   </ul>
   <app-user-orders></app-user-orders>
