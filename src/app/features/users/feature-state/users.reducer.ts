@@ -26,5 +26,16 @@ export const Reducer = createReducer(
     ...state,
     loading: false,
     error,
+  })),
+  on(usersActions.updateUser, (state, { user }) =>
+    usersAdapter.updateOne({ id: user.id, changes: user }, state)
+  ),
+  on(usersActions.updateUserSuccess, (state, { user }) =>
+    usersAdapter.updateOne({ id: user.id, changes: user }, state)
+  ),
+  on(usersActions.updateUserFailure, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
   }))
 );

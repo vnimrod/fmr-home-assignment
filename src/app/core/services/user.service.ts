@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserApiService } from './user-api.service';
 
-
 @Injectable({ providedIn: 'root' })
 export class UserService {
   constructor(private readonly api: UserApiService) {}
@@ -19,5 +18,9 @@ export class UserService {
 
   getOrdersByUserId$(userId: string): Observable<UserOrder[]> {
     return this.api.getOrdersByUserId(userId);
+  }
+
+  updateUser$(user: UserModels.User): Observable<UserModels.User> {
+    return this.api.updateUser(user);
   }
 }

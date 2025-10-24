@@ -22,4 +22,20 @@ export class UsersEffects {
       )
     )
   );
+
+  update$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UsersActions.updateUser),
+      switchMap(({ user }) =>
+        this.userService.updateUser$(user).pipe(
+          map((updatedUser) =>
+            UsersActions.updateUserSuccess({ user: updatedUser })
+          ),
+          catchError((error) =>
+            of(UsersActions.updateUserFailure({ error: error.message }))
+          )
+        )
+      )
+    )
+  );
 }

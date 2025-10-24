@@ -23,4 +23,8 @@ export class UserApiService {
       map((orders) => orders.filter((order) => order.userId === userId))
     );
   }
+
+  updateUser(user: UserModels.User): Observable<UserModels.User> {
+    return of(user).pipe(delay(300));
+  }
 }
