@@ -1,5 +1,5 @@
 <div class="total-orders">
-  <span class="title">Total Orders</span>
-  <span class="value">{{ totalOrders }}</span>
-  <span class="value">{{ totalPrice }}</span>
+  <div class="title">Total Orders</div>
+  <div class="value">{{ totalOrders }} Orders</div>
+  <div class="value">{{ totalPrice | currency:'USD':'symbol':'1.2-2' }}</div>
 </div>

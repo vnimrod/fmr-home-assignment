@@ -1,6 +1,20 @@
 <div class="user-orders">
   @if (userOrderData$ | async; as userOrderData) {
-  <app-user-name [userName]="userOrderData.user?.name || ''"></app-user-name>
-  <app-total-orders [userOrders]="userOrderData.userOrders"></app-total-orders>
+    <div class="user-orders-header">
+      <div>
+        <h2 class="user-orders-title">User Orders</h2>
+        <p class="user-orders-subtitle">Order details and summary</p>
+      </div>
+    </div>
+    
+    <div class="user-orders-content">
+      <app-user-name [userName]="userOrderData.user?.name || ''"></app-user-name>
+      <app-total-orders [userOrders]="userOrderData.userOrders"></app-total-orders>
+    </div>
+  } @else {
+    <div class="user-orders-loading">
+      <div class="loading-spinner"></div>
+      <span class="loading-text">Loading user orders...</span>
+    </div>
   }
 </div>

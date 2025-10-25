@@ -1,4 +1,4 @@
-import type * as UserModels from '../../features/users/feature-state/users.models';
+import type { UserModels } from '../../features/users/feature-state';
 
 export const USERS_MOCK: UserModels.User[] = [
   {

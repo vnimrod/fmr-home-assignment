@@ -1,6 +1,6 @@
-import type { UserOrder } from '../../features/user-orders/feature-state/user-orders.models';
+import type { UserOrdersModels } from '../../features/user-orders/feature-state';
 
-export const ORDERS_MOCK: UserOrder[] = [
+export const ORDERS_MOCK: UserOrdersModels.UserOrder[] = [
   {
     id: '101',
     userId: '1',
