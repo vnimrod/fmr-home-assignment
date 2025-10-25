@@ -1,4 +1,4 @@
-import type * as UserModels from '../feature-state/users.models';
+import type { UserModels } from '../feature-state';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -28,7 +28,7 @@ export class UserComponent {
     updatedUser: UserModels.User;
   }>();
   @Output() userDeleted = new EventEmitter<string>();
-  @Output() userOrdersClicked = new EventEmitter<string>();
+  @Output() userOrdersClicked = new EventEmitter<UserModels.User>();
 
   isEditing = false;
 
@@ -63,6 +63,6 @@ export class UserComponent {
   }
 
   onDisplayUserOrders(): void {
-    this.userOrdersClicked.emit(this.user.id);
+    this.userOrdersClicked.emit(this.user);
   }
 }

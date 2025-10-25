@@ -1,7 +1,6 @@
-import type * as UserOrdersModels from './user-orders.models';
 import { createReducer, on } from '@ngrx/store';
 import { createEntityAdapter } from '@ngrx/entity';
-import * as UserOrdersActions from './user-orders.actions';
+import { UserOrdersActions, UserOrdersModels } from './';
 
 export const ordersAdapter = createEntityAdapter<UserOrdersModels.UserOrder>({
   selectId: (order) => order.id,

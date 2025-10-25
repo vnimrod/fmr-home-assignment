@@ -1,5 +1,5 @@
-import type { UserOrder } from '../../features/user-orders/feature-state/user-orders.models';
-import type * as UserModels from '../../features/users/feature-state/users.models';
+import type { UserOrdersModels } from '../../features/user-orders/feature-state';
+import type { UserModels } from '../../features/users/feature-state';
 import { Injectable } from '@angular/core';
 import { delay, EMPTY, map, Observable, of } from 'rxjs';
 import { USERS_MOCK } from '../mocks/users.mock';
@@ -17,7 +17,7 @@ export class UserApiService {
     return of(USERS_MOCK.find((user) => user.id === id)).pipe(delay(300));
   }
 
-  getOrdersByUserId(userId: string): Observable<UserOrder[]> {
+  getOrdersByUserId(userId: string): Observable<UserOrdersModels.UserOrder[]> {
     return of(ORDERS_MOCK).pipe(
       delay(300),
       map((orders) => orders.filter((order) => order.userId === userId))
@@ -41,7 +41,7 @@ export class UserApiService {
     return EMPTY.pipe(delay(300));
   }
 
-  getUserOrders(userId: string): Observable<UserOrder[]> {
+  getUserOrders(userId: string): Observable<UserOrdersModels.UserOrder[]> {
     return of(ORDERS_MOCK).pipe(
       delay(300),
       map((orders) => orders.filter((order) => order.userId === userId))

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, of, switchMap } from 'rxjs';
-import * as OrdersActions from './user-orders.actions';
+import { UserOrdersActions } from './';
 import { UserService } from '../../../core/services/user.service';
 
 @Injectable()
@@ -11,11 +11,11 @@ export class UserOrdersEffects {
 
   load$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(OrdersActions.loadUserOrders),
-      switchMap(({ userId }) =>
-        this.userService.getUserOrders$(userId).pipe(
-          map(userOrders => OrdersActions.loadUserOrdersSuccess({ userOrders })),
-          catchError(err => of(OrdersActions.loadUserOrdersFailure({ error: err?.message ?? 'Failed to load orders' })))
+      ofType(UserOrdersActions.loadUserOrders),
+      switchMap(({ user }) =>
+        this.userService.getUserOrders$(user.id).pipe(
+          map(userOrders => UserOrdersActions.loadUserOrdersSuccess({ userOrders, user })),
+          catchError(err => of(UserOrdersActions.loadUserOrdersFailure({ error: err?.message ?? 'Failed to load orders' })))
         )
       )
     )

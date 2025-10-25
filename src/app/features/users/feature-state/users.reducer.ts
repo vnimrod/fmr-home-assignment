@@ -1,6 +1,6 @@
-import type * as UserModels from './users.models';
+import type { UserModels } from './';
 import { createReducer, on } from '@ngrx/store';
-import { createEntityAdapter, EntityState } from '@ngrx/entity';
+import { createEntityAdapter } from '@ngrx/entity';
 import * as usersActions from './users.actions';
 
 export const usersAdapter = createEntityAdapter<UserModels.User>({
@@ -66,5 +66,11 @@ export const Reducer = createReducer(
   on(usersActions.deleteUserFailure, (state, { error }) => ({
     ...state,
     error,
+  })),
+
+  // Set Selected User
+  on(usersActions.setSelectedUserId, (state, { userId }) => ({
+    ...state,
+    selectedUserId: userId,
   }))
 );

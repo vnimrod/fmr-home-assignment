@@ -1,5 +1,5 @@
-import type * as UserModels from '../../features/users/feature-state/users.models';
-import type { UserOrder } from '../../features/user-orders/feature-state/user-orders.models';
+import type { UserModels } from '../../features/users/feature-state';
+import type { UserOrdersModels } from '../../features/user-orders/feature-state';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserApiService } from './user-api.service';
@@ -28,11 +28,7 @@ export class UserService {
     return this.api.deleteUser(userId);
   }
 
-  getOrdersByUserId$(userId: string): Observable<UserOrder[]> {
-    return this.api.getOrdersByUserId(userId);
-  }
-
-  getUserOrders$(userId: string): Observable<UserOrder[]> {
+  getUserOrders$(userId: string): Observable<UserOrdersModels.UserOrder[]> {
     return this.api.getOrdersByUserId(userId);
   }
 }

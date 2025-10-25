@@ -1,6 +1,6 @@
 <div class="user-orders">
-  <app-user-name></app-user-name>
-  @if (userOrders$ | async; as userOrders) {
-    <app-total-orders [userOrders]="userOrders"></app-total-orders>
+  @if (userOrderData$ | async; as userOrderData) {
+  <app-user-name [userName]="userOrderData.user?.name || ''"></app-user-name>
+  <app-total-orders [userOrders]="userOrderData.userOrders"></app-total-orders>
   }
 </div>

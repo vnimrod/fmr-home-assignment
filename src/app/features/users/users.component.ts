@@ -1,4 +1,3 @@
-import type * as UserModels from './feature-state/users.models';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -13,7 +12,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormArray, FormControl, Validators } from '@angular/forms';
 import { UserComponent } from './user/user.component';
 import { UserOrdersComponent } from '../user-orders/user-orders.component';
-import * as userActions from './feature-state/users.actions';
+import { UsersActions, UserModels} from './feature-state';
 import { UsersSelectors } from './feature-state';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { UserOrdersActions } from '../user-orders/feature-state';
@@ -36,7 +35,7 @@ export class UsersComponent implements OnInit {
   });
 
   ngOnInit(): void {
-    this.store.dispatch(userActions.load());
+    this.store.dispatch(UsersActions.load());
     this.initializeForm();
   }
 
@@ -68,24 +67,25 @@ export class UsersComponent implements OnInit {
     };
 
     this.store.dispatch(
-      userActions.addUser({
+      UsersActions.addUser({
         user: { id: '', createdAt: new Date().toISOString(), ...newUser },
       })
     );
   }
 
   onSaveUser(updatedUser: UserModels.User): void {
-    this.store.dispatch(userActions.updateUser({ user: updatedUser }));
+    this.store.dispatch(UsersActions.updateUser({ user: updatedUser }));
   }
 
   onDeleteUser(userId: string): void {
     const confirmed = confirm('Are you sure you want to delete this user?');
     if (confirmed) {
-      this.store.dispatch(userActions.deleteUser({ userId }));
+      this.store.dispatch(UsersActions.deleteUser({ userId }));
     }
   }
 
-  onDisplayUserOrders(userId: string): void {
-    this.store.dispatch(UserOrdersActions.loadUserOrders({ userId }));
+  onDisplayUserOrders(user: UserModels.User): void {
+    this.store.dispatch(UsersActions.setSelectedUserId({ userId: user.id }));
+    this.store.dispatch(UserOrdersActions.loadUserOrders({ user }));
   }
 }
