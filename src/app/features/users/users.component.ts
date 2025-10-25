@@ -16,6 +16,7 @@ import { UserOrdersComponent } from '../user-orders/user-orders.component';
 import * as userActions from './feature-state/users.actions';
 import { UsersSelectors } from './feature-state';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { UserOrdersActions } from '../user-orders/feature-state';
 
 @Component({
   selector: 'app-users',
@@ -82,5 +83,9 @@ export class UsersComponent implements OnInit {
     if (confirmed) {
       this.store.dispatch(userActions.deleteUser({ userId }));
     }
+  }
+
+  onDisplayUserOrders(userId: string): void {
+    this.store.dispatch(UserOrdersActions.loadUserOrders({ userId }));
   }
 }

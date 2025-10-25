@@ -28,6 +28,7 @@ export class UserComponent {
     updatedUser: UserModels.User;
   }>();
   @Output() userDeleted = new EventEmitter<string>();
+  @Output() userOrdersClicked = new EventEmitter<string>();
 
   isEditing = false;
 
@@ -59,5 +60,9 @@ export class UserComponent {
 
   onDelete(): void {
     this.userDeleted.emit(this.user.id);
+  }
+
+  onDisplayUserOrders(): void {
+    this.userOrdersClicked.emit(this.user.id);
   }
 }

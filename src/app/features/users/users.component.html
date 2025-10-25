@@ -18,6 +18,7 @@
             [emailControl]="userControl.get('email')"
             (userSaved)="onSaveUser($event.updatedUser)"
             (userDeleted)="onDeleteUser($event)"
+            (userOrdersClicked)="onDisplayUserOrders($event)"
           >
           </app-user>
         </li>
