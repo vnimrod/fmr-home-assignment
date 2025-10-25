@@ -1,6 +1,6 @@
 <header>
   <span class="header-title">Users Table</span>
-  <button (click)="addUser()" class="add-user-button">Add New User</button>
+  <button (click)="onAddUser()" class="add-user-button">Add New User</button>
 </header>
 <main>
   <div class="users-header">
@@ -8,13 +8,21 @@
     <span class="header-email">Email</span>
     <span class="header-actions"></span>
   </div>
-
-  <ul class="users-list">
-    @for (user of users$ | async; track user.id) {
-    <li class="user-item">
-      <app-user [user]="user"></app-user>
-    </li>
-    }
-  </ul>
+  <form [formGroup]="usersForm">
+    <ul class="users-list" formArrayName="users">
+      @for (userControl of $any(usersForm.get('users'))?.controls || []; track $index) {
+        <li class="user-item">
+          <app-user
+            [user]="userControl.get('userData')?.value"
+            [nameControl]="userControl.get('name')"
+            [emailControl]="userControl.get('email')"
+            (userSaved)="onSaveUser($event.updatedUser)"
+            (userDeleted)="onDeleteUser($event)"
+          >
+          </app-user>
+        </li>
+      }
+    </ul>
+  </form>
   <app-user-orders></app-user-orders>
 </main>

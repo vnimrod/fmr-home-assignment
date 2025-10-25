@@ -2,75 +2,62 @@ import type * as UserModels from '../feature-state/users.models';
 import {
   ChangeDetectionStrategy,
   Component,
-  inject,
   Input,
-  OnInit,
+  Output,
+  EventEmitter,
 } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  ReactiveFormsModule,
-} from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Store } from '@ngrx/store';
-import * as usersActions from '../feature-state/users.actions';
+import {
+  ReactiveFormsModule,
+  FormControl,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-user',
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserComponent implements OnInit {
+export class UserComponent {
   @Input() user!: UserModels.User;
+  @Input() nameControl!: FormControl;
+  @Input() emailControl!: FormControl;
+  @Output() userSaved = new EventEmitter<{
+    userId: string;
+    updatedUser: UserModels.User;
+  }>();
+  @Output() userDeleted = new EventEmitter<string>();
 
-  userForm!: FormGroup;
-  isEdit = false;
-
-  private store = inject(Store);
-
-  ngOnInit(): void {
-    this.userForm = new FormGroup({
-      name: new FormControl(this.user.name, [
-        Validators.required,
-        Validators.minLength(2),
-      ]),
-      email: new FormControl(this.user.email, [
-        Validators.required,
-        Validators.email,
-      ]),
-    });
-  }
+  isEditing = false;
 
   toggleEdit(): void {
-    this.isEdit = !this.isEdit;
-    if (!this.isEdit) {
-      this.userForm.patchValue({
-        name: this.user.name,
-        email: this.user.email,
-      });
-    }
+    this.isEditing = !this.isEditing;
   }
 
-  updateUser(): void {
-    if (this.userForm.valid) {
-      this.store.dispatch(
-        usersActions.updateUser({
-          user: { id: this.user.id, ...this.userForm.value },
-        })
-      );
-      this.isEdit = false;
+  onSave(): void {
+    if (this.nameControl.invalid || this.emailControl.invalid) {
+      return;
     }
+
+    const updatedUser = {
+      ...this.user,
+      name: this.nameControl.value,
+      email: this.emailControl.value,
+    };
+
+    this.userSaved.emit({ userId: this.user.id, updatedUser });
+    this.isEditing = false;
   }
 
-  deleteUser(): void {
-    const confirmed = confirm(
-      `Are you sure you want to delete ${this.user.name}?`
-    );
-    if (confirmed) {
-      this.store.dispatch(usersActions.deleteUser({ userId: this.user.id }));
-    }
+  onCancel(): void {
+    this.isEditing = false;
+    // Reset form controls to original values
+    this.nameControl.patchValue(this.user.name);
+    this.emailControl.patchValue(this.user.email);
+  }
+
+  onDelete(): void {
+    this.userDeleted.emit(this.user.id);
   }
 }

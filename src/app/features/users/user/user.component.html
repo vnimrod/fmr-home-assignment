@@ -1,49 +1,66 @@
-<form class="user-row" [formGroup]="userForm">
-   <div class="item">
-     @if (isEdit) {
-     <input
-       formControlName="name"
-       class="form-input"
-       [class.error]="userForm.get('name')?.invalid && userForm.get('name')?.touched"
-     />
-     } @else {
-     <span class="user-name">{{ user.name }}</span>
-     }
-   </div>
+<div class="user-row">
+  <div class="item">
+    @if (isEditing) {
+    <input
+      [formControl]="nameControl"
+      class="form-input"
+      [class.error]="nameControl.invalid && nameControl.touched"
+    />
+    @if (nameControl.invalid && nameControl.touched) {
+      <div class="error-message">
+        @if (nameControl.errors?.['required']) {
+          Name is required
+        }
+        @if (nameControl.errors?.['minlength']) {
+          Name must be at least 2 characters
+        }
+      </div>
+    }
+    } @else {
+    <span class="user-name" title="{{ user.name }}">{{ user.name }}</span>
+    }
+  </div>
 
-   <div class="item">
-     @if (isEdit) {
-     <input
-       formControlName="email"
-       type="email"
-       class="form-input"
-       [class.error]="userForm.get('email')?.invalid && userForm.get('email')?.touched"
-     />
-     } @else {
-     <span class="user-email">{{ user.email }}</span>
-     }
-   </div>
+  <div class="item">
+    @if (isEditing) {
+    <input
+      [formControl]="emailControl"
+      type="email"
+      class="form-input"
+      [class.error]="emailControl.invalid && emailControl.touched"
+    />
+    @if (emailControl.invalid && emailControl.touched) {
+      <div class="error-message">
+        @if (emailControl.errors?.['required']) {
+          Email is required
+        }
+        @if (emailControl.errors?.['email']) {
+          Please enter a valid email
+        }
+      </div>
+    }
+    } @else {
+    <span class="user-email" title="{{ user.email }}">{{ user.email }}</span>
+    }
+  </div>
 
   <button type="button" class="orders-button">Orders</button>
 
   <div class="action-buttons">
-    @if (isEdit) {
+    @if (isEditing) {
       <button
         type="button"
-        (click)="updateUser()"
-        [disabled]="userForm.invalid"
+        (click)="onSave()"
+        [disabled]="nameControl.invalid || emailControl.invalid"
         class="save-button"
       >
         ✓
       </button>
-      <button type="button" (click)="toggleEdit()" class="cancel-button">
-        ✗
-      </button>
+      <button type="button" (click)="onCancel()" class="cancel-button">X</button>
     } @else {
       <button type="button" (click)="toggleEdit()" class="edit-button">✎</button>
     }
-      <button type="button" (click)="deleteUser()" class="delete-button">
-        ×
-      </button>
+
+    <button type="button" (click)="onDelete()" class="delete-button">🗑</button>
   </div>
-</form>
+</div>
