@@ -37,6 +37,7 @@ export class UserApiService {
     return of(user).pipe(delay(300));
   }
 
+  // no use of the userId, only remove from state (mock case)
   deleteUser(userId: string): Observable<void> {
     return EMPTY.pipe(delay(300));
   }

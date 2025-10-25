@@ -1,35 +1,24 @@
-/* User Name Component Styles */
+
 .user-name {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  
-  /* Typography */
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--primary-700);
   line-height: 1.4;
-  
-  /* Visual enhancements */
   padding: var(--space-3) var(--space-4);
   background: linear-gradient(135deg, var(--primary-50) 0%, var(--neutral-50) 100%);
   border-radius: var(--radius-lg);
   border: 1px solid var(--primary-200);
-  
-  /* Subtle shadow */
   box-shadow: var(--shadow-sm);
-  
-  /* Icon styling */
   &::before {
     content: '👤';
     font-size: 1.25rem;
     opacity: 0.8;
   }
-  
-  /* Animation */
   transition: all 0.2s ease;
-  
-  /* Hover effect */
+
   &:hover {
     transform: translateY(-1px);
     box-shadow: var(--shadow-md);
@@ -37,7 +26,6 @@
   }
 }
 
-/* Empty state */
 .user-name:empty {
   opacity: 0.5;
   
@@ -46,7 +34,6 @@
   }
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .user-name {
     font-size: 1.25rem;
@@ -54,7 +41,6 @@
   }
 }
 
-/* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .user-name {
     color: var(--primary-300);
@@ -67,7 +53,6 @@
   }
 }
 
-/* Focus styles */
 .user-name:focus-visible {
   outline: 2px solid var(--primary-500);
   outline-offset: 2px;

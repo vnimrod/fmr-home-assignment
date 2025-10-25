@@ -1,17 +1,15 @@
-/* Total Orders Component Styles */
+
 .total-orders {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
   
-  /* Container styling */
   padding: var(--space-5);
   background: linear-gradient(135deg, var(--success-50) 0%, var(--neutral-50) 100%);
   border-radius: var(--radius-lg);
   border: 1px solid var(--success-200);
   box-shadow: var(--shadow-sm);
   
-  /* Animation */
   animation: slideInUp 0.4s ease-out;
 }
 
@@ -26,14 +24,12 @@
   }
 }
 
-/* Title styling */
 .title {
   font-size: 1rem;
   font-weight: 500;
   color: var(--success-700);
   margin-bottom: var(--space-2);
   
-  /* Icon */
   &::before {
     content: '📊';
     margin-right: var(--space-2);
@@ -41,20 +37,17 @@
   }
 }
 
-/* Value styling */
 .value {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--success-800);
   line-height: 1.5;
   
-  /* Highlight effect */
   padding: var(--space-2) var(--space-3);
   background: rgba(255, 255, 255, 0.7);
   border-radius: var(--radius-md);
   border: 1px solid var(--success-300);
   
-  /* Transition */
   transition: all 0.2s ease;
   
   &:hover {
@@ -63,9 +56,7 @@
   }
 }
 
-/* Specific styling for different value types */
 .value:nth-child(2) {
-  /* Orders count */
   color: var(--primary-700);
   border-color: var(--primary-300);
   
@@ -76,7 +67,6 @@
 }
 
 .value:nth-child(3) {
-  /* Total price */
   color: var(--warning-700);
   border-color: var(--warning-300);
   
@@ -86,7 +76,6 @@
   }
 }
 
-/* Empty state */
 .total-orders:has(.value:empty) {
   opacity: 0.6;
   
@@ -95,7 +84,6 @@
   }
 }
 
-/* Loading state */
 .total-orders.loading {
   .value {
     background: var(--neutral-200);
@@ -113,7 +101,6 @@
   }
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
   .total-orders {
     padding: var(--space-4);
@@ -129,7 +116,6 @@
   }
 }
 
-/* Dark mode support */
 @media (prefers-color-scheme: dark) {
   .total-orders {
     background: linear-gradient(135deg, var(--success-900) 0%, var(--neutral-800) 100%);
@@ -161,13 +147,11 @@
   }
 }
 
-/* Focus styles */
 .total-orders:focus-within {
   outline: 2px solid var(--success-500);
   outline-offset: 2px;
 }
 
-/* Print styles */
 @media print {
   .total-orders {
     background: white !important;

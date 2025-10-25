@@ -14,9 +14,9 @@
 
 .item {
   display: flex;
-  flex-direction: column; /* Added for error message positioning */
-  position: relative; /* For absolute positioned error messages */
-  min-height: 2rem; /* Fixed height to prevent jumping */
+  flex-direction: column;
+  position: relative;
+  min-height: 2rem;
 }
 
 .user-name,
@@ -27,8 +27,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 150px; /* Explicit max-width for ellipsis */
-  padding: 0.5rem 0; /* Match input padding */
+  max-width: 150px;
+  padding: 0.5rem 0;
 }
 
 .orders-button {
@@ -87,7 +87,7 @@
 }
 
 button {
-  font-size: 24px; /* For icon buttons */
+  font-size: 24px;
   background: none;
   border: none;
   padding: 0;

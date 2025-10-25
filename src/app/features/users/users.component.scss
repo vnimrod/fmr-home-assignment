@@ -86,10 +86,8 @@ header {
   margin: 0;
   background: white;
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  // overflow: hidden;
 }
 
-/* Loading States */
 .loading-container {
   display: flex;
   flex-direction: column;
