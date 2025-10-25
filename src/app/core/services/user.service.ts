@@ -31,4 +31,8 @@ export class UserService {
   getOrdersByUserId$(userId: string): Observable<UserOrder[]> {
     return this.api.getOrdersByUserId(userId);
   }
+
+  getUserOrders$(userId: string): Observable<UserOrder[]> {
+    return this.api.getOrdersByUserId(userId);
+  }
 }

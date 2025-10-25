@@ -40,4 +40,11 @@ export class UserApiService {
   deleteUser(userId: string): Observable<void> {
     return EMPTY.pipe(delay(300));
   }
+
+  getUserOrders(userId: string): Observable<UserOrder[]> {
+    return of(ORDERS_MOCK).pipe(
+      delay(300),
+      map((orders) => orders.filter((order) => order.userId === userId))
+    );
+  }
 }
