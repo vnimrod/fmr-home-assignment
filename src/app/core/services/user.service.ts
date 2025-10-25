@@ -16,8 +16,8 @@ export class UserService {
     return this.api.getUserById(id);
   }
 
-  getOrdersByUserId$(userId: string): Observable<UserOrder[]> {
-    return this.api.getOrdersByUserId(userId);
+  addUser$(user: UserModels.User): Observable<UserModels.User> {
+    return this.api.addUser(user);
   }
 
   updateUser$(user: UserModels.User): Observable<UserModels.User> {
@@ -26,5 +26,9 @@ export class UserService {
 
   deleteUser$(userId: string): Observable<void> {
     return this.api.deleteUser(userId);
+  }
+
+  getOrdersByUserId$(userId: string): Observable<UserOrder[]> {
+    return this.api.getOrdersByUserId(userId);
   }
 }

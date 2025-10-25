@@ -22,6 +22,16 @@ export const addUser = createAction(
   props<{ user: UserModels.User }>()
 );
 
+export const addUserSuccess = createAction(
+  '[Users] Add User Success',
+  props<{ user: UserModels.User }>()
+);
+
+export const addUserFailure = createAction(
+  '[Users] Add User Failure',
+  props<{ error: string }>()
+);
+
 export const updateUser = createAction(
   '[Users] Update User',
   props<{ user: UserModels.User }>()

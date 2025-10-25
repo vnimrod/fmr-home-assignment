@@ -66,7 +66,9 @@ export class UserComponent implements OnInit {
   }
 
   deleteUser(): void {
-    const confirmed = confirm(`Are you sure you want to delete ${this.user.name}?`);
+    const confirmed = confirm(
+      `Are you sure you want to delete ${this.user.name}?`
+    );
     if (confirmed) {
       this.store.dispatch(usersActions.deleteUser({ userId: this.user.id }));
     }

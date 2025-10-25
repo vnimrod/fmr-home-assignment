@@ -24,6 +24,15 @@ export class UserApiService {
     );
   }
 
+  addUser(user: UserModels.User): Observable<UserModels.User> {
+    const newUser: UserModels.User = {
+      ...user,
+      id: Math.random().toString(36).substr(2, 9),
+      createdAt: new Date().toISOString(),
+    };
+    return of(newUser).pipe(delay(300));
+  }
+
   updateUser(user: UserModels.User): Observable<UserModels.User> {
     return of(user).pipe(delay(300));
   }

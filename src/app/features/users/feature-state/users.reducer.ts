@@ -18,6 +18,7 @@ export const initialState: UserModels.UsersState = usersAdapter.getInitialState(
 export const Reducer = createReducer(
   initialState,
 
+  // Load Users
   on(usersActions.load, (state) => ({ ...state, loading: true })),
   on(usersActions.loadSuccess, (state, { users }) =>
     usersAdapter.setAll(users, { ...state, loading: false })
@@ -27,6 +28,23 @@ export const Reducer = createReducer(
     loading: false,
     error,
   })),
+
+  // Add User
+  on(usersActions.addUser, (state) => ({
+    ...state,
+    error: null,
+  })),
+
+  on(usersActions.addUserSuccess, (state, { user }) =>
+    usersAdapter.addOne(user, state)
+  ),
+
+  on(usersActions.addUserFailure, (state, { error }) => ({
+    ...state,
+    error,
+  })),
+
+  // Update User
   on(usersActions.updateUser, (state, { user }) =>
     usersAdapter.updateOne({ id: user.id, changes: user }, state)
   ),
@@ -35,10 +53,11 @@ export const Reducer = createReducer(
   ),
   on(usersActions.updateUserFailure, (state, { error }) => ({
     ...state,
-    loading: false,
     error,
   })),
-  on(usersActions.deleteUser, (state, { userId }) => 
+
+  // Delete User
+  on(usersActions.deleteUser, (state, { userId }) =>
     usersAdapter.removeOne(userId, state)
   ),
   on(usersActions.deleteUserSuccess, (state, { userId }) =>
@@ -46,7 +65,6 @@ export const Reducer = createReducer(
   ),
   on(usersActions.deleteUserFailure, (state, { error }) => ({
     ...state,
-    loading: false,
     error,
   }))
 );

@@ -1,5 +1,10 @@
 import type * as UserModels from './feature-state/users.models';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -17,13 +22,25 @@ import { UsersSelectors } from './feature-state';
 })
 export class UsersComponent implements OnInit {
   private store = inject(Store);
-  users$: Observable<UserModels.User[]> = this.store.select(UsersSelectors.selectAllUsers);
+  users$: Observable<UserModels.User[]> = this.store.select(
+    UsersSelectors.selectAllUsers
+  );
 
   ngOnInit(): void {
     this.store.dispatch(userActions.load());
   }
 
   addUser(): void {
-    // this.store.dispatch(userActions.addUser();
+    const newUser = {
+      name: 'New User',
+      email: 'newuser@example.com',
+    };
+
+    // The id will be added on the service.
+    this.store.dispatch(
+      userActions.addUser({
+        user: { id: '', createdAt: new Date().toISOString(), ...newUser },
+      })
+    );
   }
 }
