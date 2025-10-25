@@ -9,3 +9,4 @@ export const selectOrdersState = createFeatureSelector<UserOrdersModels.OrdersSt
 const { selectAll } = ordersAdapter.getSelectors();
 
 export const selectOrdersByUserId = createSelector(selectOrdersState, selectAll);
+export const selectOrdersLoading = createSelector(selectOrdersState, (state) => state.loading);

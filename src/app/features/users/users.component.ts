@@ -30,6 +30,7 @@ export class UsersComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
 
   users$: Observable<UserModels.User[]> = this.store.select(UsersSelectors.selectAllUsers);
+  loading$: Observable<boolean> = this.store.select(UsersSelectors.selectLoading);
   usersForm: FormGroup = new FormGroup({
     users: new FormArray<FormGroup>([])
   });

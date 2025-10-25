@@ -19,3 +19,5 @@ export const selectSelectedUser = createSelector(
     selectedUserId ? _.get(entities, selectedUserId, null) : null
 );
 
+export const selectLoading = createSelector(selectUserState, (state) => state.loading);
+

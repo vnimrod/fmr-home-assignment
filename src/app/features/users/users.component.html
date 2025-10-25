@@ -3,27 +3,34 @@
   <button (click)="onAddUser()" class="add-user-button">Add New User</button>
 </header>
 <main>
-  <div class="users-header">
-    <span class="header-name">Name</span>
-    <span class="header-email">Email</span>
-    <span class="header-actions"></span>
-  </div>
-  <form [formGroup]="usersForm">
-    <ul class="users-list" formArrayName="users">
-      @for (userControl of $any(usersForm.get('users'))?.controls || []; track $index) {
-        <li class="user-item">
-          <app-user
-            [user]="userControl.get('userData')?.value"
-            [nameControl]="userControl.get('name')"
-            [emailControl]="userControl.get('email')"
-            (userSaved)="onSaveUser($event.updatedUser)"
-            (userDeleted)="onDeleteUser($event)"
-            (userOrdersClicked)="onDisplayUserOrders($event)"
-          >
-          </app-user>
-        </li>
-      }
-    </ul>
-  </form>
+  @if (loading$ | async) {
+    <div class="loading-container">
+      <div class="loading-spinner"></div>
+      <p class="loading-text">Loading users...</p>
+    </div>
+  } @else {
+    <div class="users-header">
+      <span class="header-name">Name</span>
+      <span class="header-email">Email</span>
+      <span class="header-actions"></span>
+    </div>
+    <form [formGroup]="usersForm">
+      <ul class="users-list" formArrayName="users">
+        @for (userControl of $any(usersForm.get('users'))?.controls || []; track $index) {
+          <li class="user-item">
+            <app-user
+              [user]="userControl.get('userData')?.value"
+              [nameControl]="userControl.get('name')"
+              [emailControl]="userControl.get('email')"
+              (userSaved)="onSaveUser($event.updatedUser)"
+              (userDeleted)="onDeleteUser($event)"
+              (userOrdersClicked)="onDisplayUserOrders($event)"
+            >
+            </app-user>
+          </li>
+        }
+      </ul>
+    </form>
+  }
   <app-user-orders></app-user-orders>
 </main>

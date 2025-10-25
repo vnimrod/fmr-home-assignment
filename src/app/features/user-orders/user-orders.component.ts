@@ -26,4 +26,6 @@ export class UserOrdersComponent {
   ]).pipe(
     map(([userOrders, user]) => ({ userOrders, user }))
   );
+
+  loading$: Observable<boolean> = this.store.select(UserOrdersSelectors.selectOrdersLoading);
 }
